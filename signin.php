@@ -1,19 +1,23 @@
 <?php
 require_once 'model/DBConnect.php';
+require_once 'model/managers/UserManager.php';
+session_start();
 
 if(isset($_POST) && !empty($_POST)){
     $dbh = dbconnect();
-    $pseudo = $_POST['pseudo'];
-    $mail = $_POST['mail'];
-    $mdp = $_POST['pass'];
+    $pseudo = htmlentities($_POST['pseudo']);
+    $email = htmlentities($_POST['email']);
+    $mdp = $_POST['password'];
     $hashed_password = password_hash($mdp, PASSWORD_BCRYPT);
-
-    $sql = "INSERT INTO t_user (pseudo, mail, mdp) VALUES (:pseudo, :mail, :hashed_password)";
-    $stmt = $dbh->prepare($sql);
-    $stmt->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
-    $stmt->bindParam(':mail', $mail, PDO::PARAM_STR);
-    $stmt->bindParam(':hashed_password', $hashed_password, PDO::PARAM_STR);
-    $stmt->execute();
+    UserManager::addUser($pseudo, $email, $hashed_password);
+    // $sql = "INSERT INTO t_user (pseudo, email, password) VALUES (:pseudo, :email, :hashed_password)";
+    // $stmt = $dbh->prepare($sql);
+    // $stmt->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
+    // $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+    // $stmt->bindParam(':hashed_password', $hashed_password, PDO::PARAM_STR);
+    // $stmt->execute();
+    // UserManager::connectUser();
+    header("location: ../index.php");
 }
 ?>
 

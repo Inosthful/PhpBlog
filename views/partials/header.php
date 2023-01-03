@@ -1,5 +1,5 @@
 <?php 
-require_once '../BDD/model/classes/Post.php';
+require_once './views/partials/header.php';
 session_start();
 
 ?>
@@ -25,8 +25,11 @@ session_start();
     <div class="collapse navbar-collapse justify-content-end " id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active  btn btn-outline-info ms-auto link-dark" aria-current="page" href="#">Accueil</a>
+          <a class="nav-link active  btn btn-outline-info ms-auto link-dark" aria-current="page" href="./index.php">Accueil</a>
         </li>
+        <li class="nav-item">
+                        <a class="nav-link" href="addPost.php">AddPOST</a>
+                    </li>
         <?php 
         if(isset($_SESSION['user'])&& !empty($_SESSION['user'])){ ?>
             <li class="nav-item"> <a class="nav-link btn btn-outline-info ms-auto link-light" href="logout.php">Se déconnecter</a>

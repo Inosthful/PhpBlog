@@ -1,25 +1,29 @@
 <?php
 require_once 'model/DBConnect.php';
+require_once 'model/managers/UserManager.php';
 
 
 if(isset($_POST) && !empty($_POST)){
     $dbh = dbconnect();
-    $mail = $_POST['mail'];
-    $mdp = $_POST['pass'];
-    $stmt = $dbh->prepare("SELECT * FROM t_user WHERE mail = :mail");
-    $stmt->bindParam(':mail', $mail, PDO::PARAM_STR);
-    $stmt->execute();
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    if($user){
-        //var_dump($user); //tester la connexion utilisateur ici ! 
-        $hashed = $user['mdp'];
-        $isAuthUser = password_verify($mdp, $hashed);
-        if($isAuthUser){
+    $email = ($_POST['email']) ;
+    $mdp = $_POST['password'];
+    // $stmt = $dbh->prepare("SELECT * FROM t_user WHERE email = :email");
+    // $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+    // $stmt->execute();
+    // $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $user = UserManager::getUserByEmail($email);
+    $verified_password = password_verify($mdp, $user->getPassword());
+    if($verified_password){
+        UserManager::connectUser($user);
+        // $hashed = $user['password'];
+        // $isAuthUser = password_verify($mdp, $hashed);
+        if($verified_password){
+
             // var_dump($_SESSION);
             session_start();
             $_SESSION['user'] = [
-                'id'=>$user['id_user'],
-                'mail'=>$user['mail']
+                'id'=>$user->getIdUser(),
+                'email'=>$user->getEmail()
             ];
             var_dump($_SESSION);
             header("location: ../index.php");

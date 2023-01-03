@@ -7,7 +7,7 @@ class CommentManager {
 
     public static function getAllCommentByPostId($id){
         $dbh = dbconnect();
-        $query = ("SELECT * FROM comment WHERE id_post = :id");
+        $query = ("SELECT * FROM t_comment WHERE id_post = :id");
         $stmt = $dbh->prepare($query);
         $stmt->bindParam(':id', $id);
         $stmt->execute();

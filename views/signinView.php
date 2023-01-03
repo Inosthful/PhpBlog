@@ -21,11 +21,11 @@ require_once '../signin.php';
         </div>
         <div class="mb-3">
             <label for="InputMail" class="form-label">Mail de l'utilisateur</label>
-            <input type="text" class="form-control" id="InputMail" name="mail">
+            <input type="text" class="form-control" id="InputMail" name="email">
         </div>
         <div class="mb-3">
             <label for="InputPassword" class="form-label">Mot de passe de l'utilisateur</label>
-            <input type="password" class="form-control" id="InputPassword" name="pass">
+            <input type="password" class="form-control" id="InputPassword" name="password">
         </div>
         <button class="btn btn-primary" type="submit">S'enregistrer</button>
     </form>

@@ -6,13 +6,13 @@ class Post{
 
     private $id_post;
 
-    private $title_post;
+    private $title;
 
     private $datePub;
 
     private $content;
 
-    private $image;
+    private $picture;
 
     private $id_user;
 
@@ -25,7 +25,7 @@ class Post{
      */ 
     public function getTitle()
     {
-        return $this->title_post;
+        return $this->title;
     }
     /**
      * Get the value of date
@@ -46,7 +46,7 @@ class Post{
      */ 
     public function getPicture()
     {
-        return $this->image;
+        return $this->picture;
     }
     /**
      * Get the value of id_user
@@ -73,9 +73,9 @@ class Post{
      *
      * @return  self
      */ 
-    public function setTitle($title_post)
+    public function setTitle($title)
     {
-        $this->title_post = $title_post;
+        $this->title = $title;
 
         return $this;
     }
@@ -109,9 +109,9 @@ class Post{
      *
      * @return  self
      */ 
-    public function setPicture($image)
+    public function setPicture($picture)
     {
-        $this->image = $image;
+        $this->picture = $picture;
 
         return $this;
     }
