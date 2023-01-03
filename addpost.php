@@ -11,7 +11,7 @@ if(isset($_SESSION['user'])){
         $picture = $_POST['picture'];
         $content = $_POST['content'];
         $userId = $_SESSION['user']->getIdUser();
-        var_dump($userId);
+        PostManager::addPost($title, $picture, $content, $userId);
     }
 
     require_once 'views/addpostView.php';
