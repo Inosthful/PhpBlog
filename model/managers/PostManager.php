@@ -49,17 +49,27 @@ class PostManager {
         return $posts;
     }
 
-    public static function addPost($title, $picture, $content, $userId){
+    public static function addPost($title, $picture, $content, $userId) {
         $dbh = dbconnect();
         $date = (new DateTime())->format('Y-m-d H:i:s');
-        $query = "INSERT INTO t_post (title, picture, content, id_user) VALUES (:title, :picture, :content, :id_user)";
+        $query = "INSERT INTO t_post (title, date, picture, content, id_user) VALUES (:title, '$date', :picture, :content, :id_user)";
         $stmt = $dbh->prepare($query);
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':picture', $picture);
         $stmt->bindParam(':content', $content);
-        $stmt->bindParam(':id_user', $id_user);
+        $stmt->bindParam(':id_user', $userId);
         $stmt->execute();
         return $dbh->lastInsertId();
+    }
+
+
+    public static function addPostCategories($id_post, $id_category){
+        $dbh  = dbconnect();
+        $query = "INSERT INTO t_post_category (id_post, id_category) VALUES (:post, :cat)";
+        $stmt = $dbh->prepare($query);
+        $stmt->bindParam(':post', $id_post);
+        $stmt->bindParam(':cat', $id_category);
+        $stmt->execute();
         }
 
 }
