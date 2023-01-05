@@ -21,8 +21,8 @@ require_once './model/classes/Post.php';
         <?php foreach ($posts as $post) { ?>
             <div class="card col-12 col-md-4 col-lg-2">
                 <img src="<?php echo $post->getPicture()?>" class="card-img-top" alt="...">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title"><?php echo $post->getTitle() ?></h5>
+                <div class="card-body d-flex flex-column justify-content-center align-items-center align-content-center">
+                    <h5 class="card-title "><?php echo $post->getTitle() ?></h5>
 
                     <div class=""><a href="./single.php?id=<?php echo $post->getIdPost() ?>" class="btn btn-primary">Voir l'article</a>
         <!-- try "gap" pour les cards -->
@@ -45,7 +45,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem similique pe
       <img src="https://static.mensup.fr/22/2022/10/photo_article/761009/298941/1200-L-worlds-2022-de-league-of-legends-laffiche-des-demi-finales.jpg" class="d-block w-100" alt="ntm2">
     </div>
     <div class="carousel-item">
-      <img src="https://static1.millenium.org/articles/1/39/66/21/@/1645068-pickem-worlds-2022-orig-1-article_m-1.jpg" class="d-block w-100" alt="ntm3">
+      <img src="https://sans-filtre.fr/wp-content/uploads/2021/05/IMG_9031.jpg" class="d-block w-100" alt="ntm3">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
