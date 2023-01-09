@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mar. 03 jan. 2023 à 14:00
+-- Généré le : lun. 09 jan. 2023 à 16:42
 -- Version du serveur : 8.0.30
 -- Version de PHP : 8.1.10
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `t_category` (
   `id_category` int NOT NULL,
-  `category_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
+  `category_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -51,7 +51,7 @@ CREATE TABLE `t_comment` (
   `id_post` int NOT NULL,
   `id_user` int NOT NULL,
   `date` datetime NOT NULL,
-  `content` text COLLATE utf8mb4_general_ci NOT NULL
+  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -62,10 +62,10 @@ CREATE TABLE `t_comment` (
 
 CREATE TABLE `t_post` (
   `id_post` int NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `date` datetime NOT NULL,
-  `content` text COLLATE utf8mb4_general_ci NOT NULL,
-  `picture` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `picture` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `id_user` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -74,11 +74,11 @@ CREATE TABLE `t_post` (
 --
 
 INSERT INTO `t_post` (`id_post`, `title`, `date`, `content`, `picture`, `id_user`) VALUES
-(2, 'Worlds Valorant 2022', '2022-12-22 10:04:21', 'VALORANT Champions Tour 2022 is the second official tournament circuit by Riot Games. The circuit was announced on December 10th, 2021 with a blog post. [1]\r\n\r\nWinner : LOUD', 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg', 7),
-(3, 'Worlds Valorant 2021', '2023-01-02 13:53:52', 'VALORANT Champions Tour 2021 is the first official tournament circuit by Riot Games. The circuit was announced on November 24th, 2020 with a blog post. [1]\r\n\r\nWinner : ACE', 'https://assets.valorantesports.com/val/vct-logo.21d0c9ddeb.svg', 7),
-(4, 'Worlds 2020', '2023-01-03 07:58:49', 'The 2020 Season World Championship (Worlds 2020) is the conclusion of the 2020 League of Legends esports season. The tournament was held in Shanghai, China.\r\n\r\nWinner : DWG', 'https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/5/51/Worlds_2020.png/revision/latest?cb=20200906182621', 5),
-(5, 'Worlds 2021', '2023-01-03 07:58:49', 'The 2021 Season League of Legends World Championship (Worlds 2021) is the conclusion of the 2021 League of Legends esports season. The Play-in stage begins on October 5, 2021. The main event begins on October 11, 2021.', 'https://static1.millenium.org/articles/6/36/67/26/@/1369617-179652-worlds2021-orig-1-1-article_m-1.jpg', 5),
-(6, 'Worlds 2022', '2023-01-03 08:06:49', 'The 2022 Season World Championship (Worlds 2022) is the conclusion of the 2022 League of Legends esports season. The tournament will be held in North America.', 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg', 5);
+(2, 'Worlds Valorant Champions 2022', '2022-12-22 10:04:21', 'VALORANT Champions Tour 2022 is the second official tournament circuit by Riot Games. The circuit was announced on December 10th, 2021 with a blog post. [1]\r\n\r\nWinner : LOUD', 'https://esportsgen.com/wp-content/uploads/2021/06/images-2.jpeg', 7),
+(3, 'Worlds Valorant Champions 2021', '2023-01-02 13:53:52', 'VALORANT Champions Tour 2021 is the first official tournament circuit by Riot Games. The circuit was announced on November 24th, 2020 with a blog post. [1]\r\n\r\nWinner : ACE', 'https://gumlet.assettype.com/afkgaming%2F2022-08%2F86ce823b-626e-43e7-bdb5-8b072ce9fe6a%2FUntitled_design___2022_08_18T124808_277__1_.jpg?w=1200&auto=format%2Ccompress&ogImage=true&enlarge=true', 7),
+(4, 'Worlds 2020', '2023-01-03 07:58:49', 'The 2020 Season World Championship (Worlds 2020) is the conclusion of the 2020 League of Legends esports season. The tournament was held in Shanghai, China.\r\n\r\nWinner : DWG', 'https://static1.millenium.org/articles/6/36/67/26/@/1369617-179652-worlds2021-orig-1-1-article_m-1.jpg', 5),
+(5, 'Worlds 2021', '2023-01-03 07:58:49', 'The 2021 Season League of Legends World Championship (Worlds 2021) is the conclusion of the 2021 League of Legends esports season. The Play-in stage begins on October 5, 2021. The main event begins on October 11, 2021.', 'https://i.ytimg.com/vi/rQal3ArvfrE/maxresdefault.jpg', 5),
+(6, 'Worlds 2022', '2023-01-03 08:06:49', 'The 2022 Season World Championship (Worlds 2022) is the conclusion of the 2022 League of Legends esports season. The tournament will be held in North America.', 'https://www.team-aaa.com/upload/media/post_image/0001/09/04ae247e3d503b0983515587e377644f367844c5.jpeg', 5);
 
 -- --------------------------------------------------------
 
@@ -109,9 +109,9 @@ INSERT INTO `t_post_category` (`id_pc`, `id_post`, `id_category`) VALUES
 
 CREATE TABLE `t_user` (
   `id_user` int NOT NULL,
-  `pseudo` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
+  `pseudo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
