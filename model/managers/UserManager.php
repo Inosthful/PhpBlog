@@ -1,6 +1,6 @@
 <?php
-require_once '../model/DBConnect.php';
-require_once '../model/classes/User.php';
+require_once './model/DBConnect.php';
+require_once './model/classes/User.php';
 
 class UserManager {
 
@@ -54,5 +54,14 @@ class UserManager {
             'pseudo'=>$user->getPseudo(),
         ];
     }
-
+    public static function getCommentAuthorByCommentId($id){
+        $dbh = dbconnect();
+        $query = "SELECT t_user.id_user, pseudo, email FROM t_comment JOIN t_user ON t_comment.id_user = t_user.id_user WHERE t_comment.id_comment = :id";
+        $stmt = $dbh->prepare($query);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
+        $user = $stmt->fetch();
+        return $user;
+    }
 }

@@ -9,7 +9,7 @@
 </head>
 <body>
 <?php
-
+session_start();
 require_once 'model/managers/PostManager.php';
 
 $posts = PostManager::getAllPosts();

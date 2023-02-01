@@ -7,7 +7,7 @@ $categories = CategoryManager::getAllCategories();
 
 if(isset($_SESSION['user'])){
     if(isset($_POST)&&!empty($_POST)){
-        var_dump($_FILES);
+
 
             //upload de fichier
         $uploads_dir = 'assets/images';

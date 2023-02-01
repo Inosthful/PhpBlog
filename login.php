@@ -1,35 +1,26 @@
 <?php
-require_once 'model/DBConnect.php';
+session_start();
+require_once 'model/DBConnect.php'; 
+require_once 'model/managers/CategoryManager.php';
 require_once 'model/managers/UserManager.php';
 
 
-if(isset($_POST) && !empty($_POST)){
-    $dbh = dbconnect();
-    $email = ($_POST['email']) ;
-    $mdp = $_POST['password'];
-    // $stmt = $dbh->prepare("SELECT * FROM t_user WHERE email = :email");
-    // $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-    // $stmt->execute();
-    // $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    $user = UserManager::getUserByEmail($email);
-    $verified_password = password_verify($mdp, $user->getPassword());
-    if($verified_password){
-        UserManager::connectUser($user);
-        // $hashed = $user['password'];
-        // $isAuthUser = password_verify($mdp, $hashed);
-        if($verified_password){
 
-            // var_dump($_SESSION);
-            session_start();
-            $_SESSION['user'] = [
-                'id'=>$user->getIdUser(),
-                'email'=>$user->getEmail()
-            ];
-            var_dump($_SESSION);
-            header("location: ../index.php");
-        }
+//reception des données du formulaire
+if(isset($_POST)&&!empty($_POST)){
+    $email = $_POST['email'];
+    $mdp = $_POST['mdp'];
+    //récupération des données de l'utilisateur via une valeur unique telle que le mail
+    $user = UserManager::getUserByEmail($email);
+    //vérification de la correspondance du mdp en bdd avec celui saisi par l'utilisateur
+    $verified_user = password_verify($mdp, $user->getPassword());
+    if($verified_user){ //
+        UserManager::connectUser($user);
+        header('location:index.php?status=success&message=Vous êtes bien connecté');
     }else{
-        echo "Cet utilisateur n'existe pas";
+        header('location:login.php?status=danger&message=email ou mot de passe incorrect');
     }
 }
-?>
+
+
+require_once 'views/loginView.php';

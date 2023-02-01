@@ -34,5 +34,12 @@ class CategoryManager {
         $categories = $stmt->fetchAll(PDO::FETCH_CLASS, 'Category');
         return $categories; 
     }
+    public static function addCategory($name){
+        $dbh = dbconnect();
+        $query = "INSERT INTO t_category (category_name) VALUES (:name)";
+        $stmt = $dbh->prepare($query);
+        $stmt->bindParam(':name', $name);
+        $stmt->execute();
+    }
 
 }
