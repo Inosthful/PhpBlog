@@ -3,12 +3,10 @@ session_start();
 require_once 'model/managers/PostManager.php';
 require_once 'model/managers/UserManager.php';
 require_once 'model/managers/CategoryManager.php';
-var_dump($_SESSION['user']);
 //vérifier qu'on recoit bien un id
 if(isset($_GET['id'])&&!empty($_GET['id'])){
     $id = $_GET['id'];
     $author = UserManager::getAuthorByPostId($id);
-    var_dump($author->getIdUser());
     //on vérifie que l'utilisateur en cours est bien l'auteur de l'article
     if($author->getIdUser()!==$_SESSION['user']['id']){
         header("location:index.php?status=danger&message=Vous n'avez pas l'autorisation de faire cette action");
@@ -25,7 +23,6 @@ if(isset($_POST)&&!empty($_POST)){
     ///!\ pour l'image qui ne sera pas envoyé si elle est pas modifiée /!\
     //si on reçoit une nouvelle image, on s'en occupe
     if(isset($_FILES['picture']['name'])&&!empty($_FILES['picture']['name'])){
-        var_dump($_FILES);
         $uploads_dir = 'assets/uploads';
         $tmp_location = $_FILES['picture']['tmp_name'];
         $random_string = uniqid(); //ici je génère une chaine de caractère aléatoire basée sur l'heure car le serveur écrase les fichiers qui ont le même nom

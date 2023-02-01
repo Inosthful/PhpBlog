@@ -16,9 +16,9 @@ if(isset($_POST)&&!empty($_POST)){
     $verified_user = password_verify($mdp, $user->getPassword());
     if($verified_user){ //
         UserManager::connectUser($user);
-        header('location:index.php?status=success&message=Vous êtes bien connecté');
+        header('location:index.php?status=success&message=Vous êtes bien connecté !');
     }else{
-        header('location:login.php?status=danger&message=email ou mot de passe incorrect');
+        header('location:login.php?status=danger&message=email ou mot de passe incorrect !');
     }
 }
 
